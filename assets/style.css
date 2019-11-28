@@ -6,8 +6,11 @@
     color: white;
 }
 
-.nav-link {
+#navbarSupportedContent > ul > li.nav-item.active > a {
     color: white;
+}
+ul { 
+    list-style: none;
 }
 
 #footer{

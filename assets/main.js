@@ -86,14 +86,14 @@ var number = "#";
 for (var i = 0; i < fivedaysdata.length; i ++) {
     
   
-    console.log(array[i].Date);
+    // console.log(array[i].Date);
    
     number = "#" + num; 
 $(number).append(array[i].Date);
 
 num ++
-console.log(number);
-console.log(num);
+// console.log(number);
+// console.log(num);
 }
 
 for (var p = 0; p < fivedaysdata.length; p ++) {
@@ -102,8 +102,8 @@ for (var p = 0; p < fivedaysdata.length; p ++) {
 $(number).append(array[p].Open);
 
 num ++
-console.log(number);
-console.log(num);
+// console.log(number);
+// console.log(num);
 }
 
 for (var q = 0; q < fivedaysdata.length; q ++) {
@@ -112,8 +112,8 @@ for (var q = 0; q < fivedaysdata.length; q ++) {
 $(number).append(array[q].High);
 
 num ++
-console.log(number);
-console.log(num);
+// console.log(number);
+// console.log(num);
 }
 
 for (var r = 0; r < fivedaysdata.length; r ++) {
@@ -122,8 +122,8 @@ for (var r = 0; r < fivedaysdata.length; r ++) {
 $(number).append(array[r].Low);
 
 num ++
-console.log(number);
-console.log(num);
+// console.log(number);
+// console.log(num);
 }
 
 for (var n = 0; n < fivedaysdata.length; n ++) {
@@ -132,35 +132,71 @@ for (var n = 0; n < fivedaysdata.length; n ++) {
 $(number).append(array[n].Close);
 
 num ++
-console.log(number);
-console.log(num);
+// console.log(number);
+// console.log(num);
 }
-  });
 
-  var nytAPIKEY = "iGbme2pZ2eaACzYTpAiX9BGXySUEUB3H"
-  var NYTUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + search + "&api-key=" + nytAPIKEY
-  var search = $("#input").val().trim();
+var chart =  document.getElementById("stockchart").getContext('2d');
+var fiveDayStockChart = new Chart(chart, {
+    type: 'bar',
+    data: {
+        labels:[fivedaysdata[0].date, fivedaysdata[1].date, fivedaysdata[2].date, fivedaysdata[3].date, fivedaysdata[4].date],
+        datasets: [
+            {
+                label: 'Daily High',
+                data: [
+                    fivedaysdata[0]["2. high"],
+                    fivedaysdata[1]["2. high"],
+                    fivedaysdata[2]["2. high"],
+                    fivedaysdata[3]["2. high"],
+                    fivedaysdata[4]["2. high"],
+                ],
+                backgroundColor: "rgb(43, 160, 43)"
+            }
+        ]
+    },
+    options: {}
+})
+
+
+
+
+  var nytAPIKEY = "90f7ef30539848a78d424e69b49f2ea9"
+  var NYTUrl = "https://newsapi.org/v2/everything?q=" + search + " &from=" + fivedaysdata[0].date + "&to=" + fivedaysdata[4].date + "&sortBy=popularity&apiKey=" + nytAPIKEY
+//   var search = $("#input").val().trim();
 
 
 $.ajax({
         url: NYTUrl,
         method: "GET"
       }).then(function(response) {
+        // console.log(response);
         console.log(response);
-        console.log(response.response.docs);
         
-        var articles = response.response.docs;
+        var articles = response.articles;
+        console.log(articles);
 
-        for (var i = 0; i < articles.length; i ++) {
+        for (var i = articles.length - 10; i >= 0; i --) {
 
-        console.log(articles[1].headline.main);
-        var newsTable = $("<td>").text(articles[i].headline.main); 
-            
-        $("#newsBody").append(newsTable);
+        // console.log(articles[1].headline.main);
+        // console.log(articles[1].web_url);
+        var newsTable = $("<a>").text(articles[i].title);
+        var linkUrl = articles[i].url;
+
+        newsTable.addClass("links");
+        newsTable.attr("href", linkUrl); 
+        var newsInfo = $("<td>").append(newsTable);
+        $("#newsBody").append(newsInfo);
+        
+       
+
+
       };
 
-
+     
     });
+
+});  
 
 });
 

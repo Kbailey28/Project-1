@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css"/> 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Daily Stock Quotes and News</h1>
+          <h1 class="display-4">Five Day Stock Quotes and News</h1>
           <p class="lead">This is your source for up to date stock market information and news</p>
         </div>
       </div>
@@ -27,25 +28,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="file:///Users/KyleBailey/Desktop/Project-1/index.html?">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+            
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" id="input" type="search" placeholder="Enter Name or Symbol" aria-label="Search">
@@ -103,6 +88,10 @@
               </tbody>
             </table>
       </div>
+
+      <div id = "chart">
+        <canvas id = "stockchart"></canvas>
+      </div>
       <div id="news">
           <table class="table">
               <thead>
@@ -111,11 +100,11 @@
                 </tr>
               </thead>
               <tbody id = "newsBody">
-
+                  
               </tbody>
       </div>
     <div id="footer">
-      <p>text</p>
+      <p>Powered by <a href = "https://newsapi.org/"> News API </a></p>
     </div>
   </nav>
 </body>

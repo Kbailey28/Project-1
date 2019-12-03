@@ -1,0 +1,30 @@
+.jumbotron {
+    background-image: url("images/largeSM.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Muli', sans-serif;
+    color: white;
+}
+
+#navbarSupportedContent > ul > li.nav-item.active > a {
+    color: white;
+}
+ul { 
+    list-style: none;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+#footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(43, 160, 43);
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+}
